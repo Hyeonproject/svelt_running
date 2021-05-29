@@ -1,13 +1,27 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
+  import { loop_guard } from "svelte/internal";
+
+  let name = "Something";
+  let h1;
+
+  function moreDot() {
+    name += ".";
+  }
+
+  beforeUpdate(() => {
+    console.log("Before update");
+    console.log(h1 && h1.innerText);
+  });
+
+  afterUpdate(() => {
+    console.log("After update");
+    console.log(h1.innerText);
+  });
 
   onMount(() => {
     console.log("onMount");
-    return () => {
-      //이슈가 많아서 이는 사라진 문법이다. 비동기 시에서는 promise 객체로 반환되기
-      //때문에 사용이 힘들다.
-      console.log("Destory in mount");
-    };
+    h1 = document.querySelector("h1");
   });
 
   onDestroy(() => {
@@ -15,4 +29,4 @@
   });
 </script>
 
-<h1>Something..</h1>
+<h1 on:click={moreDot}>{name}</h1>
