@@ -14,3 +14,14 @@ export function lifecycle() {
     console.log("After update?");
   });
 }
+
+export function delayRender(delay = 3000) {
+  //ms
+  let render = false;
+  onMount(() => {
+    setTimeout(() => {
+      render = true;
+    }, delay);
+  });
+  return render;
+}

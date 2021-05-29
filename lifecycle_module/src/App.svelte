@@ -1,7 +1,10 @@
 <script>
-  import { lifecycle } from "./lifecycle.js";
+  import { lifecycle, delayRender } from "./lifecycle.js";
 
+  let done = delayRender();
   lifecycle();
 </script>
 
-<h1>Hello Lifecycle</h1>
+{#if done}
+  <h1>Hello Lifecycle</h1>
+{/if}
