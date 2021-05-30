@@ -1,4 +1,5 @@
 import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
+import { writable } from "svelte/store";
 
 export function lifecycle() {
   onMount(() => {
@@ -16,11 +17,12 @@ export function lifecycle() {
 }
 
 export function delayRender(delay = 3000) {
-  //ms
-  let render = false;
+  let render = writable(false);
   onMount(() => {
     setTimeout(() => {
-      render = true;
+      //$render = true; 사용할 수 없음 ㅠㅠ svelte 컴포넌트가 아니여서 ㅠ
+      console.log(render); //set, updae, subscribe
+      render.set(true)
     }, delay);
   });
   return render;
