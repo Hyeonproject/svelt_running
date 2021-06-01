@@ -1,30 +1,17 @@
 <script>
-	export let name;
+  let herf = "https://medium.com/@hyeonproject";
+  let name = "Hyeonproject";
+  let value = "New input value";
+  let inUpperCase = false;
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<!-- <a href= "주소">Hyeonproject</a>-->
+<a {href}>{name}</a>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+<!-- <input type="text" value="default value"-->
+<input {value} on:click="{{e} => {value = e.target.value}}" />
+<input {value} on:click={e => value = e.target.value} />
+<input bind:value={value} />
+<input bind:value />
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<div>{isUpperCase ? 'DIV' : 'div'}</div>
