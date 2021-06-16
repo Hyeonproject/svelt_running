@@ -1,15 +1,21 @@
 <script>
-  import { assign } from "svelte/internal";
-
+  import { tick } from "svelte";
   let count = 0;
   let double = 0;
 
   $: {
     double = count * 2;
+    console.log("double!!");
   }
 
-  function assigns() {
+  //   $: double = count * 2;
+
+  async function assigns() {
     count += 1;
+    console.time("timer");
+    await tick();
+    console.timeEnd("timer");
+    console.log(double);
   }
 </script>
 
